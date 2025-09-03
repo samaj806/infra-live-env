@@ -5,10 +5,10 @@ provider "aws" {
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "ajsammy-bucket"
 
-# prevent accidental deletion of this bucket
-  lifecycle {
-    prevent_destroy = true
-  }
+  # prevent accidental deletion of this bucket
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 # Enable versioning so you can see the full revision history of your state files
@@ -20,9 +20,9 @@ resource "aws_s3_bucket_versioning" "enabled" {
 }
 
 # Enable server-side encryption by default
- resource "aws_s3_bucket_server_side_encryption_configuration" "enabled" {
+resource "aws_s3_bucket_server_side_encryption_configuration" "enabled" {
   bucket = aws_s3_bucket.terraform_state.id
-  
+
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"

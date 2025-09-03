@@ -3,15 +3,19 @@ provider "aws" {
 }
 
 module "webserver-cluster" {
-  source =  "git::ssh://git@github.com/samaj806/Terraform_module.git//services/webserver-cluster?ref=v0.1.0"
+  source = "C:/Users/ajala/Terraform-mod/modules/services/webserver-cluster"
 
-  cluster_name = "webservers-stage"
+  ami         = "ami-020cba7c55df1f615"
+  server_text = "Checking and checking again and again For Zero Down-Time Deployment"
+
+  cluster_name           = "webservers-stage"
   db_remote_state_bucket = "ajsammy-bucket"
   db_remote_state_key    = "stage/data-stores/mysql/terraform.tfstate"
 
-  instance_type = "t2.micro"
-  min_size      = 1
-  max_size      = 2
+  instance_type      = "t2.micro"
+  min_size           = 3
+  max_size           = 4
+  enable_autoscaling = false
 }
 
 # terraform {

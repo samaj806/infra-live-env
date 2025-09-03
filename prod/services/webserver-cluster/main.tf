@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "webserver-cluster" {
-  source = "git::ssh://git@github.com/samaj806/Terraform_module.git//services/webserver-cluster?ref=v0.2.0"
+  source = "git::ssh://git@github.com/samaj806/Terraform_module.git//services/webserver-cluster?ref=v0.2.1"
 
   cluster_name           = "webservers-prod"
   db_remote_state_bucket = "ajsammy-bucket"
@@ -12,7 +12,11 @@ module "webserver-cluster" {
   instance_type = "t2.micro"
   min_size      = 2
   max_size      = 4
-  
+
+  custom_tags = {
+    Owner     = "Team-Sam"
+    ManagedBy = "terraform"
+  }
 }
 
 resource "aws_autoscaling_schedule" "scale_out_during_business_hours" {
