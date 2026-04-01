@@ -15,13 +15,13 @@ resource "aws_db_instance" "example" {
   password = var.db_password
 }
 
-# terraform {
-#   backend "s3" {
-#     bucket = "ajsammy-bucket"
-#     key    = "prod/data-stores/mysql/terraform.tfstate"
-#     region = "us-east-1"
+terraform {
+  backend "s3" {
+    bucket = "ajsammy-bucket012"
+    key    = "prod/data-stores/mysql/terraform.tfstate"
+    region = "us-east-1"
 
-#     dynamodb_table = "terraform_db-locks"
-#     encrypt        = true
-#   }
-# }
+    dynamodb_table = "terraform_db-locks"
+    encrypt        = true
+  }
+}
