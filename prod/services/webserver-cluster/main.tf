@@ -38,12 +38,12 @@ module "webserver-cluster" {
 #   autoscaling_group_name = module.webserver-cluster.asg_name
 # }
 
-terraform {
-  backend "s3" {
-    bucket         = "ajsammy-bucket012"
-    key            = "prod/services/webserver-cluster/terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform_db-locks"
-    encrypt        = true
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket         = "ajsammy-bucket012"
+#     key            = "prod/services/webserver-cluster/terraform.tfstate"
+#     region         = "us-east-1"
+#     dynamodb_table = "terraform_db-locks"
+#     encrypt        = true
+#   }
+# }

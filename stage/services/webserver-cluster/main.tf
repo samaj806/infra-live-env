@@ -18,12 +18,3 @@ module "webserver-cluster" {
   enable_autoscaling = false
 }
 
-# terraform {
-#   backend "s3" {
-#     bucket         = "ajsammy-bucket012"
-#     key            = "stage/services/webserver-cluster/terraform.tfstate"
-#     region         = "us-east-1"
-#     dynamodb_table = "terraform_db-locks"
-#     encrypt        = true
-#   }
-# }
