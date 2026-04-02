@@ -3,9 +3,11 @@ resource "aws_iam_openid_connect_provider" "github_actions" {
   url            = "https://token.actions.githubusercontent.com"
   client_id_list = ["sts.amazon.com"]
   thumbprint_list = [
-    data.tls_certificate.github.certificates[0].sha1_fingerprint
+    "6938fd4d98bab03faadb97b34396831e3780aea1"
   ]
 }
+
+data "aws_caller_identity" "current" {}
 
 # Fetch Github's OIDC thumprint
 data "tls_certificate" "github" {
@@ -21,7 +23,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
     principals {
       type        = "Federated"
-      identifiers = ["aws_iam_openid_connect_provider.github_actions.arn"]
+      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubuseraccount.com"]
     }
 
     condition {
@@ -79,5 +81,5 @@ resource "aws_iam_role" "github_actions_terraforms" {
 
 resource "aws_iam_role_policy_attachment" "admin" {
   role       = aws_iam_role.github_actions_terraforms.name
-  policy_arn = "arn:aws:iam::aws:policy/AdminstratorAccess"
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
