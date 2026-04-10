@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:aud"
       values = [
-        "https://github.com"
+        "sts.amazonaws.com","https://github.com"
       ]
 
 
@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       values = [
-        "repo:samaj806/infra-live-env:ref:refs/heads/main"
+        "repo:samaj806/infra-live-env:*"
       ]
     }
   }
