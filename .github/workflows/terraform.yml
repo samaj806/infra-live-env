@@ -14,11 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Debug OIDC
+        uses: github/actions-oidc-debugger@main
+
       - name: Debug OIDC Token Audience
         run: |
           echo "=== OIDC Token Debug ==="
           curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
                 "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq '.'
+
 
       # Authenticate to AWS using OIDC
       - uses: aws-actions/configure-aws-credentials@v4
