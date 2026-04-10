@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:aud"
       values = [
-        "sts.amazonaws.com"
+        "https://github.com"
       ]
 
 
